@@ -1,29 +1,15 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <el-switch
-  v-model="value"
-  active-color="#13ce66"
-  inactive-color="#ff4949">
-</el-switch>
-  </div>
-  
+  <Detail />  
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Detail from '@/pages/Detail'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  },
-   data() {
-      return {
-        value: true
-      }
-    }
+    Detail
+  }
 }
 </script>
 

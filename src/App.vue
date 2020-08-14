@@ -1,39 +1,30 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <el-switch
-  v-model="value"
-  active-color="#13ce66"
-  inactive-color="#ff4949">
-</el-switch>
+    <!-- app -->
+    <Top />
+    <Home />
+    <Bottom />
   </div>
-  
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Top from "./components/Top/Top";
+import Bottom from "./components/Bottom/Bottom";
+import Home from "./pages/Home/Home";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    Top,
+    Bottom,
+    Home,
   },
-   data() {
-      return {
-        value: true
-      }
-    }
-}
+  data() {
+    return {
+      value: true,
+    };
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style lang="less" rel="stylesheet/less" scoped></style>

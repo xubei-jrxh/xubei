@@ -1,0 +1,133 @@
+[
+  {
+    "title": "热销榜",
+    "imgUrl": "http://www.xubei.com/static/steam_images/steam_hot_remark.png",
+    "bigImg": "http://www.xubei.com/static/steam_images/steam_hot0.jpg",
+    "games": [
+      {
+        "id": 1,
+        "name": "绝地求生",
+        "tag": [
+          "生存",
+          "射击",
+          "多人"
+        ],
+        "gameImg": "http://www.xubei.com/static/steam_images/steam_hot1.jpg"
+      },
+      {
+        "id": 2,
+        "name": "生化危机2重制版",
+        "tag": [
+          "恐怖",
+          "生存"
+        ],
+        "gameImg": "http://www.xubei.com/static/steam_images/steam_hot2.jpg"
+      },
+      {
+        "id": 3,
+        "name": "只狼:影逝二度",
+        "tag": [
+          "动作",
+          "困难",
+          "类魂"
+        ],
+        "gameImg": "http://www.xubei.com/static/steam_images/steam_hot3.jpg"
+      },
+      {
+        "id": 4,
+        "name": "NBA 2K19",
+        "tag": [
+          "体育",
+          "模拟",
+          "多人"
+        ],
+        "gameImg": "http://www.xubei.com/static/steam_images/steam_hot4.jpg"
+      },
+      {
+        "id": 5,
+        "name": "人类一败涂地",
+        "tag": [
+          "多人",
+          "合作",
+          "解谜"
+        ],
+        "gameImg": "http://www.xubei.com/static/steam_images/steam_hot5.jpg"
+      },
+      {
+        "id": 6,
+        "name": "GTA5",
+        "tag": [
+          "动作",
+          "多人",
+          "射击"
+        ],
+        "gameImg": "http://www.xubei.com/static/steam_images/steam_hot6.jpg"
+      }
+    ]
+  },
+  {
+    "title": "新游榜",
+    "imgUrl": "http://www.xubei.com/static/steam_images/steam_new_remark.png",
+    "bigImg": "http://www.xubei.com/static/steam_images/steam_new0.jpg",
+    "games": [
+      {
+        "id": 1,
+        "name": "凯特琳经典版",
+        "tag": [
+          "解谜",
+          "动漫"
+        ],
+        "gameImg": "http://www.xubei.com/static/steam_images/steam_new1.jpg"
+      },
+      {
+        "id": 2,
+        "name": "肥宅模拟器",
+        "tag": [
+          "独立",
+          "休闲",
+          "模拟"
+        ],
+        "gameImg": "http://www.xubei.com/static/steam_images/steam_new2.jpg"
+      },
+      {
+        "id": 3,
+        "name": "剑士",
+        "tag": [
+          "生存",
+          "沙盒",
+          "角色扮演"
+        ],
+        "gameImg": "http://www.xubei.com/static/steam_images/steam_new3.jpg"
+      },
+      {
+        "id": 4,
+        "name": "阿特拉斯",
+        "tag": [
+          "生存",
+          "多人"
+        ],
+        "gameImg": "http://www.xubei.com/static/steam_images/steam_new4.jpg"
+      },
+      {
+        "id": 5,
+        "name": "宵星传说：决定版",
+        "tag": [
+          "单人",
+          "动漫",
+          "角色扮演"
+        ],
+        "gameImg": "http://www.xubei.com/static/steam_images/steam_new5.jpg"
+      },
+      {
+        "id": 6,
+        "name": "逆刃",
+        "tag": [
+          "动作",
+          "冒险",
+          "多人在线"
+        ],
+        "gameImg": "http://www.xubei.com/static/steam_images/steam_new6.jpg"
+      }
+    ]
+  }
+]

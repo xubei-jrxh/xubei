@@ -3,3 +3,10 @@ html, body{
   height: 100%;
   background-color: #f8f8f8;
 }
+body{
+  height: 2000px;
+}
+a:link:hover{
+    color : #3EAFFD;
+    /* text-decoration: underline; */
+}

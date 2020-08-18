@@ -1,14 +1,15 @@
 <template>
-  <Detail />  
+  <div>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-import Detail from '@/pages/Detail'
+import Search from '@/pages/Search'
 
 export default {
   name: 'App',
   components: {
-    Detail
   }
 }
 </script>

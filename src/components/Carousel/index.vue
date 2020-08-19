@@ -1,8 +1,15 @@
 <template>
-  <div class="swiper-container" ref="swiper">
+  <div class="swiper-container"
+       ref="swiper">
     <div class="swiper-wrapper">
-      <div class="swiper-slide" v-for="item in carouselList" :key="item.id">
-        <img :src="item.imgUrl" alt="">
+      <!-- <div class="swiper-slide"
+           v-for="item in carouselList"
+           :key="item.id"> -->
+      <div class="swiper-slide"
+           v-for="(item, index) in carouselList"
+           :key="index">
+        <img :src="item.imgUrl"
+             alt="">
       </div>
     </div>
     <!-- 如果需要分页器 -->
@@ -17,10 +24,10 @@
 <script>
 import Vue from 'vue'
 import Swiper from 'swiper'
-// import 'swiper/css/swiper.min.css'  // 在入口js中引入
+import 'swiper/css/swiper.min.css'
 
 export default {
-  name: 'Carousel',
+  name: 'Carousel',
 
   props: {
     carouselList: Array  // 外部传入轮播列表数据
@@ -28,7 +35,7 @@ export default {
 
   // 在页面初始显示后立即执行
   mounted () {
-    console.log('mounted', this.carouselList.length)  // 为0, banner数据是异步获取的
+    // console.log('mounted', this.carouselList.length)  // 为0, banner数据是异步获取的
     /* setTimeout(() => {
       // 要求: 创建swiper对象必须要在轮播列表页面显示之后执行才可以  ==> 否则轮播效果有问题
       // new Swiper('.swiper-container', { // 有问题, 会匹配所有此类名元素
@@ -55,9 +62,9 @@ export default {
     carouselList: {
       handler () { // 说明carouselList状态数据发了改变, 但界面还没有更新
         // 只有数组中有数据, 才需要创建swiper对象 
-        if (this.carouselList.length===0) return
+        if (!this.carouselList || this.carouselList.length === 0) return
 
-        console.log('watch carouselList', this.carouselList.length)  // 执行3次行
+        // console.log('watch carouselList', this.carouselList.length)  // 执行3次行
         /* 
         数据绑定流程 ==> 更新状态数据  ==> 同步调用监视的回调函数 ==> 界面就会自动 `异步`更新
         */
@@ -73,6 +80,7 @@ export default {
             // 分页器
             pagination: {
               el: '.swiper-pagination',
+              clickable: true,
             },
 
             // 前进后退按钮
@@ -90,5 +98,4 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
 </style>

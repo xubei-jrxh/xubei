@@ -1,9 +1,10 @@
-import { Button, Switch, Tooltip } from 'element-ui'
+import { Button, Switch, Tooltip, Badge } from 'element-ui'
 const element = {
-  install: function (Vue) {
+  install: function(Vue) {
     Vue.use(Button)
     Vue.use(Switch)
     Vue.use(Tooltip)
-  }
+    Vue.use(Badge)
+  },
 }
 export default element

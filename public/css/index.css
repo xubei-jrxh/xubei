@@ -1,12 +1,10 @@
-html, body{
+html,
+body {
   width: 100%;
   height: 100%;
   background-color: #f8f8f8;
 }
-body{
-  height: 2000px;
-}
-a:link:hover{
-    color : #3EAFFD;
-    /* text-decoration: underline; */
+a:link:hover {
+  color: #3eaffd;
+  /* text-decoration: underline; */
 }

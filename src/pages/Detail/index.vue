@@ -33,7 +33,10 @@
             <div class="nav-item"><a href="javascript:;">首页</a></div>
             <div class="nav-item"><a href="javascript:;">租号试玩</a></div>
             <div class="nav-item">
-              <a href="javascript:;">领券中心</a>
+              <el-badge value="最新">
+                <a href="javascript:;">领券中心</a>
+              </el-badge>
+
               <!-- <i>最新</i> -->
             </div>
             <div class="nav-item"><a href="javascript:;">优质店铺</a></div>
@@ -50,41 +53,19 @@
         <a href="javascript:;">返回首页</a>
         <a href="javascript:;">商品详情</a>
       </p>
+      <!-- 详细信息 -->
       <div class="good-info">
         <div class="info-left">
           <!-- 大图区域 -->
-          <div class="bigImgWrap">
+          <div class="bigImgWrap"
+               @click="imgShow">
             <img class="bigImg"
-                 src="./images/ia_100000009.jpg"
-                 alt="" />
+                 :src="detailList.imgs ? detailList.imgs[currentImageIndex].imgUrl: ''">
           </div>
           <!-- 缩略小图区域 -->
-          <div class="swipper-small">
-            <div class="inner-swipper">
-              <div class="img-wrap">
-                <img src="./images/a.jpg"
-                     alt="" />
-              </div>
-              <div class="img-wrap">
-                <img src="./images/ia_100000009.jpg"
-                     alt="" />
-              </div>
-              <div class="img-wrap">
-                <img src="./images/ia_100000009.jpg"
-                     alt="" />
-              </div>
-              <div class="img-wrap">
-                <img src="./images/ia_100000009.jpg"
-                     alt="" />
-              </div>
-            </div>
-            <div class="prev-next">
-              <a class="prev"
-                 href="javascript:;">&lt;</a>
-              <a class="next"
-                 href="javascript:;">&gt;</a>
-            </div>
-          </div>
+          <ImageList @getCurrentIndex="getCurrentIndex"
+                     ref="imgList"
+                     :imageList="detailList.imgs"></ImageList>
         </div>
         <!-- 轮播图右侧 -->
         <div class="info-right">
@@ -145,55 +126,25 @@
           </div>
           <!-- 价钱信息区域 -->
           <div class="money-info">
-            <div class="money-item">
+            <div class="money-item"
+                 :class="{'click-money': isShow === index}"
+                 v-for="(money,index) in detailList.money"
+                 :key="index"
+                 @click="moneySelect(index)">
               <div class="money">
                 <span class="symbol">￥</span>
-                <span class="money-number">5.00</span>
+                <span class="money-number">{{money.base_money}}</span>
               </div>
               <div class="clock-cirle">
-                <div class="cycle">日租</div>
+                <div class="cycle">{{money.foregift_time}}</div>
                 <div class="clock">
                   <span class="el-icon-time"></span>
-                  <span>24小时</span>
+                  <span>{{money.time_cycle}}</span>
                 </div>
               </div>
               <div class="clock-cirle-hover">
-                <p class="svip-money"><span>¥</span>13.50</p>
-                <p class="cycle-time">时租</p>
-              </div>
-            </div>
-            <div class="money-item">
-              <div class="money">
-                <span class="symbol">￥</span>
-                <span class="money-number">5.00</span>
-              </div>
-              <div class="clock-cirle">
-                <div class="cycle">日租</div>
-                <div class="clock">
-                  <span></span>
-                  <span>24小时</span>
-                </div>
-              </div>
-              <div class="clock-cirle-hover">
-                <p class="svip-money"><span>¥</span>13.50</p>
-                <p class="cycle-time">时租</p>
-              </div>
-            </div>
-            <div class="money-item">
-              <div class="money">
-                <span class="symbol">￥</span>
-                <span class="money-number">5.00</span>
-              </div>
-              <div class="clock-cirle">
-                <div class="cycle">日租</div>
-                <div class="clock">
-                  <span></span>
-                  <span>24小时</span>
-                </div>
-              </div>
-              <div class="clock-cirle-hover">
-                <p class="svip-money"><span>¥</span>13.50</p>
-                <p class="cycle-time">时租</p>
+                <p class="svip-money"><span>¥</span>{{money.vip_money}}</p>
+                <p class="cycle-time">{{money.foregift_time}}</p>
               </div>
             </div>
           </div>
@@ -214,6 +165,7 @@
           <el-button type="primary"
                      class="elRent">立即租凭</el-button>
         </div>
+        <!-- 图标 -->
         <div class="inform-collect">
           <div class="inform">
             <i class="el-icon-warning-outline"></i>
@@ -228,12 +180,16 @@
     </div>
     <!-- 配置信息 -->
     <div class="configuration-info">
+      <!-- 选项卡切换 -->
       <div class="tabWraped">
-        <h4>账号信息</h4>
-        <h4>租凭须知</h4>
+        <h4 :class="{active: tabCss===1}"
+            @click="tabChange(1)">账号信息</h4>
+        <h4 :class="{active: tabCss===2}"
+            @click="tabChange(2)">租凭须知</h4>
       </div>
       <div class="tabContent">
-        <div class="tab-item active">
+        <div class="tab-item"
+             :class="{active: tabCss===1}">
           <div class="Con-item-wrap"
                style="padding-bottom: 30px">
             <div class="Con-item"
@@ -257,80 +213,95 @@
               <div>游戏截图</div>
             </div>
             <!-- 轮播图 -->
-            <div class="swiper-container game-pick-info"
-                 ref="detailFoot">
-              <div class="swiper-wrapper">
-                <!-- <div class="swiper-slide">
-                  <img src="./images/a321d23c1132.png"
-                       alt="" /> -->
-                <div class="swiper-slide"
-                     v-for="(img, index) in detailList.imgs"
-                     :key="index">
-                  <img :src="img.imgUrl"
-                       alt="" />
-                </div>
-              </div>
-              <!-- 如果需要分页器 -->
-              <div class="swiper-pagination"></div>
-              <!-- 如果需要导航按钮 -->
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-button-next"></div>
-              <!-- 如果需要滚动条 -->
-              <!-- <div class="swiper-scrollbar"></div> -->
-            </div>
+            <Carousel class="game-pick-info"
+                      :carouselList="detailList.imgs"></Carousel>
           </div>
         </div>
-        <div class="tab-item">
-          <p>租凭须知</p>
+        <div class="tab-item"
+             :class="{active: tabCss===2}">
+          <div class="question">
+            <p class="hello"><span style="color: red">亲爱的用户，您好！</span>虚贝希望您在享受卖家账号带给您游戏乐趣的同时能够知晓并遵守以下内容：</p>
+            <p class="question-title">Q：关于租号后如何登陆游戏？</p>
+            <p>A：虚贝平台精心为用户开发了虚贝百宝箱客户端，您租号后下载虚贝百宝箱客户端，登陆或者使用虚贝账号和订单编号即可使</p>
+            <p>用客户端协助自动化登陆游戏，掉线无忧，高效安全！</p>
+            <p class="question-title">Q：关于押金，有些出租商品设置了押金，这个押金扣除后怎么退还？</p>
+            <p>A：某些出租商品设置需要缴纳押金才能租赁，您租号的押金会在48小时后返还到您的账户！</p>
+          </div>
+          <div class="agreement">
+            <p>为了更多的玩家能够享受英雄联盟带来的游戏乐趣，我们期望您能遵守以下约定：</p>
+            <p class="agreement-con"><span>1</span>禁止使用第三方外挂，禁止游戏中辱骂他人，禁止消极游戏和逃跑！</p>
+            <p class="agreement-con"><span>2</span>租号前请详细查看卖家发布内容，知晓明确禁止内容：例如：标注为禁止打排位的不可以打排位！不允许使用金币和点卷等。</p>
+            <p class="agreement-con"><span>3</span>严禁租赁高段位账号进行“演员”行为。</p>
+            <p class="agreement-con"><span>4</span>如果用户违反以上禁止内容，卖家有权发起维权申请，客服根据实际情况进行仲裁，有押金的扣除押金补偿卖家！情节严重的统计相关信息追究责任，保留且提交不良信用记录！</p>
+          </div>
         </div>
+      </div>
+    </div>
+    <div class="masking"
+         ref="mask">
+      <div class="masking-black">
+        <div class="off"
+             @click="hide">×</div>
+        <Carousel class="maske-swiper"
+                  :carouselList="detailList.imgs"></Carousel>
       </div>
     </div>
   </div>
 </template>
 <script>
-// swiper引入js和css
-import Swiper from 'swiper'
-import 'swiper/css/swiper.min.css'
 import { reqDetail } from '@/api'
+import ImageList from './ImageList'
 export default {
   name: 'Detail',
+  components: {
+    ImageList
+  },
   data () {
     return {
       goodsId: '',
-      detailList: {}
+      detailList: {},
+      tabCss: 1,
+      isShow: 0,
+      currentImageIndex: 0
     }
   },
   async mounted () {
+    // 获取路径地址的query参数
     this.goodsId = this.$route.query.goodsId
+    // 发送请求
     const result = await reqDetail(this.goodsId)
     // console.log(result)
     if (result.code === 200) {
       this.detailList = result.data
+      // console.log(this.detailList)
     }
+    // 绑定自定义事件
+    // this.$refs.imgList.$on('getCurrentIndex', this.getCurrentIndex)
   },
-  watch: {
-    detailList: {
-      handler () {
-        this.$nextTick(() => {
-          new Swiper(this.$refs.detailFoot, {
-            // direction: 'vertical', // 垂直切换选项
-            loop: true, // 循环模式选项
-            // 如果需要分页器
-            pagination: {
-              el: '.swiper-pagination',
-              clickable: true,
-            },
-            // 如果需要前进后退按钮
-            navigation: {
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev',
-            },
-          })
-        })
-      }
+  methods: {
+    // 选中money
+    moneySelect (selectMoney) {
+      this.isShow = selectMoney
+    },
+    // 选项卡切换
+    tabChange (tabCss) {
+      this.tabCss = tabCss
+    },
+    // 自定义事件的回调函数
+    getCurrentIndex (currentIndex) {
+      this.currentImageIndex = currentIndex
+      // console.log(currentIndex)
+    },
+    imgShow () {
+      this.$refs.mask.style.display = 'block'
+    },
+    // 点击按钮隐藏蒙版
+    hide () {
+      this.$refs.mask.style.display = 'none'
     }
   }
 }
+
 </script>
 <style lang="less" rel="stylesheet/less">
 body .is-dark {
@@ -390,6 +361,9 @@ body .is-dark {
             margin-left: 36px;
             font-size: 18px;
             color: #333;
+            .el-badge__content.is-fixed {
+              top: 22px;
+            }
           }
         }
       }
@@ -432,53 +406,7 @@ body .is-dark {
             object-fit: contain;
           }
         }
-        .swipper-small {
-          width: 390px;
-          height: 80px;
-          padding: 15px 0;
-          overflow: hidden;
-          position: relative;
-          .inner-swipper {
-            width: 990px;
-            height: 80px;
-            // line-height: 80px;
-            padding-left: 20px;
-            display: flex;
-            .img-wrap {
-              width: 80px;
-              height: 80px;
-              margin-right: 10px;
-              background-color: rgb(238, 238, 238);
-              img {
-                width: 80px;
-                height: 80px;
-                // vertical-align: middle;
-                object-fit: contain;
-              }
-            }
-          }
-          .prev-next {
-            .prev,
-            .next {
-              position: absolute;
-              left: 0;
-              top: 50%;
-              display: block;
-              width: 16px;
-              height: 40px;
-              background-color: #000000;
-              transform: translateY(-50%);
-              line-height: 40px;
-              text-align: center;
-              opacity: 0.2;
-              color: #fff;
-            }
-            .next {
-              left: auto;
-              right: 0;
-            }
-          }
-        }
+        // 轮播图
       }
       // 商品信息右区域
       .info-right {
@@ -627,6 +555,35 @@ body .is-dark {
               }
             }
           }
+          .click-money {
+            background-image: url("./images/ia_100000021.png") !important;
+            background-repeat: no-repeat;
+            background-size: 144px 128px;
+            .clock-cirle {
+              display: none;
+            }
+            .clock-cirle-hover {
+              display: block;
+              position: relative;
+              width: 144px;
+              height: 64px;
+              .svip-money {
+                font-size: 18px;
+                margin-left: 65px;
+                margin-top: -5px;
+                span {
+                  font-size: 14px;
+                }
+              }
+              .cycle-time {
+                position: absolute;
+                font-size: 16px;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: 6px;
+              }
+            }
+          }
         }
         // 温馨提示
         .warn {
@@ -723,11 +680,12 @@ body .is-dark {
     margin: 20px auto;
     background-color: #fff;
     .tabWraped {
-      height: 40px;
+      // height: 40px;
       display: flex;
       background-color: #f8f8f8;
       margin-bottom: 20px;
       h4 {
+        height: 40px;
         padding: 8px 20px;
         font-size: 15px;
         font-weight: normal;
@@ -735,6 +693,16 @@ body .is-dark {
         margin-right: 0;
         border-right: 1px solid #e5e5e5;
         border-left: 1px solid #e5e5e5;
+        border-top: 2px solid #f8f8f8;
+        box-sizing: border-box;
+        &:hover {
+          color: #31affd;
+        }
+        &.active {
+          border-color: #fff;
+          background-color: #fff;
+          border-top: 2px solid #3eaffd;
+        }
       }
     }
     .tabContent {
@@ -784,6 +752,88 @@ body .is-dark {
               object-fit: contain;
             }
           }
+        }
+        .question {
+          width: 100%;
+          height: 220px;
+          background: rgba(18, 141, 224, 0.06);
+          padding: 20px;
+          line-height: 30px;
+          margin-bottom: 8px;
+          font-size: 16px;
+          .hello {
+            font-size: 14px;
+          }
+          .question-title {
+            color: rgb(62, 175, 253);
+            font-weight: bold;
+          }
+        }
+        .agreement {
+          width: 100%;
+          padding: 20px;
+          line-height: 30px;
+          font-size: 14px;
+          .agreement-con {
+            span {
+              display: inline-block;
+              width: 16px;
+              height: 16px;
+              border-radius: 16px;
+              background: rgba(62, 175, 253, 0.6);
+              font-size: 12px;
+              color: #ffffff;
+              text-align: center;
+              line-height: 16px;
+              margin-right: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+  // 蒙版
+  .masking {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    overflow: auto;
+    top: 0;
+    left: 0;
+    background-color: rgba(55, 55, 55, 0.6);
+    z-index: 999;
+    padding-top: 40px;
+    .masking-black {
+      width: 1110px;
+      height: 636px;
+      background-color: #000;
+      margin: 0 auto;
+      padding: 16px 0;
+      box-sizing: border-box;
+      position: relative;
+      .off {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        position: absolute;
+        right: -10px;
+        top: -10px;
+        background-color: #31affd;
+        font-size: 22px;
+        text-align: center;
+        line-height: 25px;
+        color: #fff;
+        cursor: pointer;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+      }
+      .maske-swiper {
+        width: 1078px;
+        height: 600px;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
         }
       }
     }

@@ -75,6 +75,26 @@
       {
         "imgUrl": "http://files.xubei.com/demon/463f237238274e078e34c1425c756f1c.png"
       }
+    ],
+    "money": [
+      {
+        "foregift_time": "时租",
+        "time_cycle": "最低2小时",
+        "base_money": "3.00",
+        "vip_money": "2.50"
+      },
+      {
+        "foregift_time": "日租",
+        "time_cycle": "24小时",
+        "base_money": "18.00",
+        "vip_money": "15.00"
+      },
+      {
+        "foregift_time": "十小时畅玩",
+        "time_cycle": "10小时",
+        "base_money": "9.00",
+        "vip_money": "8.30"
+      }
     ]
   },
   {
@@ -149,6 +169,26 @@
       },
       {
         "imgUrl": "http://files.xubei.com/demon/368cbe3ec5eb4114877b4bd507f9cfda.jpg"
+      }
+    ],
+    "money": [
+      {
+        "foregift_time": "时租",
+        "time_cycle": "最低2小时",
+        "base_money": "1.00",
+        "vip_money": "0.90"
+      },
+      {
+        "foregift_time": "日租",
+        "time_cycle": "24小时",
+        "base_money": "10.00",
+        "vip_money": "9.00"
+      },
+      {
+        "foregift_time": "十小时",
+        "time_cycle": "10小时",
+        "base_money": "7.00",
+        "vip_money": "6.30"
       }
     ]
   }

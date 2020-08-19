@@ -9,12 +9,12 @@ export default {
     });
   },
   // 获展开层游戏列表数据   gameLabel:所属类别、isHot: 1:热门
-  getIndexGame({ gameLabel, isHot }) {
+  getIndexGame(gameLabel, isHot) {
     return axios({
       url: "xubei-goods-cloud/anonapi/indexGameList",
       method: "post",
       data: {
-        gameLabel,
+        gameLabel: { lable: gameLabel },
         isHot,
       },
     });

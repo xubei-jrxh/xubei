@@ -56,99 +56,311 @@
           <span>近30天收入展示</span>
         </div>
         <el-divider></el-divider>
-        <ul class="revenueList">
-          <li class="listItem">
-            <p class="phone">132****8043</p>
-            <p class="amount">
-              收入
-              <span>9099</span>元
-            </p>
-          </li>
-          <li class="listItem">
-            <p class="phone">132****8043</p>
-            <p class="amount">
-              收入
-              <span>9099</span>元
-            </p>
-          </li>
-          <li class="listItem">
-            <p class="phone">132****8043</p>
-            <p class="amount">
-              收入
-              <span>9099</span>元
-            </p>
-          </li>
-          <li class="listItem">
-            <p class="phone">132****8043</p>
-            <p class="amount">
-              收入
-              <span>9099</span>元
-            </p>
-          </li>
-          <li class="listItem">
-            <p class="phone">132****8043</p>
-            <p class="amount">
-              收入
-              <span>9099</span>元
-            </p>
-          </li>
-          <li class="listItem">
-            <p class="phone">132****8043</p>
-            <p class="amount">
-              收入
-              <span>9099</span>元
-            </p>
-          </li>
-          <li class="listItem">
-            <p class="phone">132****8043</p>
-            <p class="amount">
-              收入
-              <span>9099</span>元
-            </p>
-          </li>
-          <li class="listItem">
-            <p class="phone">132****8043</p>
-            <p class="amount">
-              收入
-              <span>9099</span>元
-            </p>
-          </li>
-          <li class="listItem">
-            <p class="phone">132****8043</p>
-            <p class="amount">
-              收入
-              <span>9099</span>元
-            </p>
-          </li>
-          <li class="listItem">
-            <p class="phone">132****8043</p>
-            <p class="amount">
-              收入
-              <span>9099</span>元
-            </p>
-          </li>
-          <li class="listItem">
-            <p class="phone">132****8043</p>
-            <p class="amount">
-              收入
-              <span>9099</span>元
-            </p>
-          </li>
-          <li class="listItem">
-            <p class="phone">132****8043</p>
-            <p class="amount">
-              收入
-              <span>9099</span>元
-            </p>
-          </li>
-          <li class="listItem">
-            <p class="phone">132****8043</p>
-            <p class="amount">
-              收入
-              <span>9099</span>元
-            </p>
-          </li>
-        </ul>
+        <div class="revenueListWrapper">
+          <ul class="revenueList" ref="revenueList">
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+            <li class="listItem">
+              <p class="phone">132****8043</p>
+              <p class="amount">
+                收入
+                <span>9099</span>元
+              </p>
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="downloadApp">
         <div class="downloadTitle">
@@ -169,6 +381,18 @@
 <script>
 export default {
   name: "Other",
+  mounted() {
+    // this.scollRevenueList();
+  },
+  methods: {
+    // scollRevenueList() {
+    //   let len = 1;
+    //   setInterval(() => {
+    //     this.$refs.revenueList.style.top = -len + "px";
+    //     len += 1;
+    //   }, 1000);
+    // },
+  },
 };
 </script>
 <style lang='less' rel='stylesheet/less' scoped>
@@ -244,22 +468,27 @@ export default {
           vertical-align: text-bottom;
         }
       }
-      .revenueList {
+      .revenueListWrapper {
+        position: relative;
         width: 321px;
         height: 330px;
         padding-left: 35px;
-        overflow: auto;
-        .listItem {
-          display: flex;
-          justify-content: space-between;
-          width: 286px;
-          height: 33px;
-          line-height: 33px;
-          font-size: 14px;
-          color: #666;
-          .amount {
-            span {
-              color: #3eaffd;
+        overflow: hidden;
+        .revenueList {
+          position: absolute;
+          transform: all 1s;
+          .listItem {
+            display: flex;
+            justify-content: space-between;
+            width: 286px;
+            height: 33px;
+            line-height: 33px;
+            font-size: 14px;
+            color: #666;
+            .amount {
+              span {
+                color: #3eaffd;
+              }
             }
           }
         }

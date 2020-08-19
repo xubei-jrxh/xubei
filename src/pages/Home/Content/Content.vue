@@ -7,7 +7,7 @@
           <a
             class="hotGrams"
             href="javascript:;"
-            @mouseenter="showTopPopup(1)"
+            @mouseenter="showTopPopup(null,1)"
             @mouseleave="hiddenTopPopup"
           >
             <img src="./images/hot_game.png" alt />
@@ -24,13 +24,12 @@
 
           <div class="leftNav">
             <!-- 左侧导航上部分 -->
-            <ul class="leftNavTop">
+            <ul class="leftNavTop" @mouseleave="hiddenLeftPopup">
               <li
                 class="gameItem"
                 v-for="item in leftNavGameList"
                 :key="item._id"
-                @mouseenter="showLeftPopup(item.id)"
-                @mouseleave="hiddenLeftPopup"
+                @mouseenter="showOneLeftPopup(item.id)"
               >
                 <a href="javascript:;">{{item.name}}</a>
               </li>
@@ -51,13 +50,12 @@
             </ul>
 
             <!-- 创建左边导航下部分 -->
-            <ul class="leftNavBottom">
+            <ul class="leftNavBottom" @mouseleave="hiddenLeftPopup">
               <li
                 class="sortItem"
                 v-for="item in leftNavSortList"
                 :key="item.id"
-                @mouseenter="showLeftPopup(null,item.label,0)"
-                @mouseleave="hiddenLeftPopup"
+                @mouseenter="showLeftTwoPopup(item.label,0)"
               >
                 <img class="iconImg" :src="item.iconUrl" v-show="item.iconUrl" alt />
                 <img class="iconImg" src="./images/computerIcon.png" v-show="item.iconUrl" alt />
@@ -94,16 +92,21 @@
               <img :src="banner.properties.picUrl" alt />
             </div>
           </div>
-          <div class="bannerNav">
-            <span v-for="item in indexBannerList" :key="item.dataId">{{item.properties.tab}}</span>
-          </div>
 
+          <div class="bannerNav">
+            <span
+              @click="changeBannerId(item.dataId)"
+              v-for="item in indexBannerList"
+              :key="item.dataId"
+              :class="item.dataId === bannerId ? 'active' : ''"
+            >{{item.properties.tab}}</span>
+          </div>
           <!-- 如果需要导航按钮 -->
           <div class="swiper-button-prev"></div>
           <div class="swiper-button-next"></div>
         </div>
 
-        <img class="bg" src="./images/bg.png" alt />
+        <img class="bg" :src="bgImg" alt />
       </div>
       <!-- 登录注册 -->
       <div class="signUp">
@@ -176,6 +179,8 @@ export default {
       activeList: [],
       //图片
       bgImg: "",
+      //轮播图tag的ID
+      bannerId: 0,
     };
   },
   mounted() {
@@ -185,47 +190,54 @@ export default {
   },
   methods: {
     // 热门游戏弹出层显示
-    async showTopPopup(isHot) {
-      // this.isShowPopup(topPopup);
-      this.$refs.topPopup.style.width = "922px";
-      this.$refs.topPopup.style.border = "1px solid #3eaffd";
-      const res = await request.getIndexGame({ isHot });
+    async showTopPopup(lable, isHot) {
+      this.isShowPopup("topPopup");
+      const res = await request.getIndexGame(lable, isHot);
       this.hotGameList = res;
     },
     // 热门游戏弹出层隐藏
     hiddenTopPopup() {
-      this.$refs.topPopup.style.width = 0;
-      this.$refs.topPopup.style.border = "none";
+      this.isHiddenPopup("topPopup");
     },
-    // 左侧导航弹出层显示
-    async showLeftPopup(id, label, isHot) {
+    // 左侧导航弹出层显示-游戏
+    async showOneLeftPopup(id) {
       if (id) {
-        this.$refs.leftTopPopup.style.width = "922px";
-        this.$refs.leftTopPopup.style.border = "1px solid #3eaffd";
+        this.isShowPopup("leftTopPopup");
+        // this.$refs.leftTopPopup.style.width = "922px";
+        // this.$refs.leftTopPopup.style.border = "1px solid #3eaffd";
         const res = await request.findGameAreaById(id);
         this.gameSortList = res.children;
       }
-      if (label) {
-        this.$refs.leftBotPopup.style.width = "922px";
-        this.$refs.leftBotPopup.style.border = "1px solid #3eaffd";
-        const data = await request.getIndexGame({ label, isHot });
-        this.handOrTourList = data.splice(0, 50);
-      }
+    },
+    // 左侧导航弹出层显示-端、手游
+    async showLeftTwoPopup(label, isHot) {
+      this.isShowPopup("leftBotPopup");
+      const data = await request.getIndexGame(label, isHot);
+      this.handOrTourList = data;
     },
     // 左侧导航弹出层隐藏
     hiddenLeftPopup() {
-      this.$refs.leftTopPopup.style.width = 0;
-      this.$refs.leftTopPopup.style.border = "none";
-      this.$refs.leftBotPopup.style.width = 0;
-      this.$refs.leftBotPopup.style.border = "none";
+      this.isHiddenPopup("leftTopPopup");
+      this.isHiddenPopup("leftBotPopup");
     },
+    // 封装一个方法来改变弹出层的显示隐藏 -显示
+    isShowPopup(popup) {
+      this.$refs[popup].style.width = "922px";
+      this.$refs[popup].style.border = "1px solid #3eaffd";
+    },
+    // 封装一个方法来改变弹出层的显示隐藏 -隐藏
+    isHiddenPopup(popup) {
+      this.$refs[popup].style.width = 0;
+      this.$refs[popup].style.border = "none";
+    },
+    // 获取首页数据
     async getIndexDataList(modId) {
       // 获取首屏轮播图数据
       if (modId === "zhuzhan_index_banner") {
         const { datas } = await request.getIndexDataList(modId);
         let res = [];
         for (let i = 0; i < datas.length; i++) {
-          if (datas[i].properties.tab) {
+          if (datas[i].properties.model_show / 1 === 1) {
             res.push(datas[i]);
           }
         }
@@ -242,11 +254,22 @@ export default {
         this.activeList = datas;
       }
     },
-    // 封装一个方法来改变弹出层的显示隐藏
-    // isShowPopup(popup) {
-    //   this.$refs.popup.style.width = "922px";
-    //   this.$refs.popup.style.border = "1px solid #3eaffd";
-    // },
+    // 轮播图变化
+    changeBannerId(id) {
+      var mySwiper = document.querySelector(".swiper-container").swiper;
+      this.bannerId = id;
+      const res = this.indexBannerList.findIndex(
+        (item) => item.dataId === this.bannerId
+      );
+      mySwiper.activeIndex = res + 1;
+      mySwiper.slideTo(mySwiper.activeIndex);
+      const timer = setInterval(() => {
+        mySwiper.slideTo(mySwiper.activeIndex + 1);
+        if (mySwiper.activeIndex === 6) {
+          mySwiper.activeIndex = 1;
+        }
+      }, 3000);
+    },
   },
   watch: {
     indexBannerList: {
@@ -257,20 +280,42 @@ export default {
           new Swiper(".swiper-container", {
             autoplay: true,
             loop: true, // 循环模式选项
+            autoplayDisableOnInteraction: false,
             // 如果需要前进后退按钮
             navigation: {
               nextEl: ".swiper-button-next",
               prevEl: ".swiper-button-prev",
+            },
+            on: {
+              slideChange: () => {
+                var mySwiper = document.querySelector(".swiper-container")
+                  .swiper;
+                let index = mySwiper.activeIndex;
+                if (index >= 6) {
+                  index = 1;
+                }
+                if (this.indexBannerList[index - 1]) {
+                  this.bgImg = this.indexBannerList[index - 1].properties.bgUrl;
+                  this.bannerId = this.indexBannerList[index - 1].dataId;
+                }
+              },
             },
           });
         });
       },
     },
   },
+  beforeDestroy() {
+    clearInterval(timer);
+  },
 };
 </script>
 
 <style lang="less" rel="stylesheet/less" scoped>
+.active {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.45);
+}
 a {
   text-decoration: none;
 }
@@ -528,10 +573,7 @@ a {
           box-sizing: border-box;
           justify-content: space-between;
           align-items: center;
-          .tabActive {
-            color: #fff;
-            background: rgba(0, 0, 0, 0.45);
-          }
+
           span {
             // display: inline-block;
             flex: 1;

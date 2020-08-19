@@ -59,11 +59,17 @@
           <!-- 大图区域 -->
           <div class="bigImgWrap"
                @click="imgShow">
-            <img class="bigImg"
-                 :src="detailList.imgs ? detailList.imgs[currentImageIndex].imgUrl: ''">
+            <img v-if="isShowImg"
+                 class="bigImg"
+                 src="./images/loading1.jpg"
+                 alt="">
+            <img v-else
+                 class="bigImg"
+                 :src="detailList.imgs[currentImageIndex].imgUrl">
           </div>
           <!-- 缩略小图区域 -->
-          <ImageList @getCurrentIndex="getCurrentIndex"
+          <ImageList @getCurrentIndex="
+                 getCurrentIndex"
                      ref="imgList"
                      :imageList="detailList.imgs"></ImageList>
         </div>
@@ -238,7 +244,7 @@
       </div>
     </div>
     <div class="masking"
-         ref="mask">
+         :class="isHideSwiper ? 'hide' : ''">
       <div class="masking-black">
         <div class="off"
              @click="hide">×</div>
@@ -262,7 +268,9 @@ export default {
       detailList: {},
       tabCss: 1,
       isShow: 0,
-      currentImageIndex: 0
+      currentImageIndex: 0,
+      isShowImg: true,
+      isHideSwiper: true
     }
   },
   async mounted () {
@@ -274,6 +282,7 @@ export default {
     if (result.code === 200) {
       this.detailList = result.data
       // console.log(this.detailList)
+      this.isShowImg = false
     }
     // 绑定自定义事件
     // this.$refs.imgList.$on('getCurrentIndex', this.getCurrentIndex)
@@ -292,12 +301,13 @@ export default {
       this.currentImageIndex = currentIndex
       // console.log(currentIndex)
     },
+    // 点击大图显示轮播
     imgShow () {
-      this.$refs.mask.style.display = 'block'
+      this.isHideSwiper = false
     },
     // 点击按钮隐藏蒙版
     hide () {
-      this.$refs.mask.style.display = 'none'
+      this.isHideSwiper = true
     }
   }
 }
@@ -794,7 +804,6 @@ body .is-dark {
   }
   // 蒙版
   .masking {
-    display: none;
     width: 100%;
     height: 100%;
     position: fixed;
@@ -804,6 +813,9 @@ body .is-dark {
     background-color: rgba(55, 55, 55, 0.6);
     z-index: 999;
     padding-top: 40px;
+    &.hide {
+      display: none;
+    }
     .masking-black {
       width: 1110px;
       height: 636px;

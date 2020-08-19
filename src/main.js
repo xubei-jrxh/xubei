@@ -11,6 +11,9 @@ Vue.config.productionTip = false
 Vue.component('Carousel', Carousel)
 
 new Vue({
+  beforeCreate() {
+    Vue.prototype.$bus = this
+  },
   render: (h) => h(App),
   router,
 }).$mount('#app')

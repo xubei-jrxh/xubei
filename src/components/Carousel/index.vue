@@ -76,7 +76,8 @@ export default {
           new Swiper(this.$refs.swiper, { // 可以, 只会匹配, 当前组件中的对应元素
             // direction: 'vertical', // 垂直切换选项   默认是水平轮播
             loop: true, // 循环模式
-
+            observer: true,/*启动动态检查器，当改变swiper的样式（例如隐藏/显示）或者修改swiper的子元素时，自动初始化swiper。*/
+            observeParents: true,/*将observe应用于Swiper的父元素。当Swiper的父元素变化时，例如window.resize，Swiper更新。*/
             // 分页器
             pagination: {
               el: '.swiper-pagination',
